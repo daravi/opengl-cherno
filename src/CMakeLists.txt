@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 3.12)
+
+project(core)
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
+
+include(${CONAN_CMAKE-TOOLS_ROOT}/cmake/Utils.cmake)
+
+SET_CLANG_COMPILER_FLAGS()
+
+add_subdirectory(001-setup)
+add_subdirectory(002-using-modern-opengl)
+add_subdirectory(003-vertex-buffers)
+add_subdirectory(004-vertex-attributes)
+add_subdirectory(005-shaders)
+add_subdirectory(006-shader-files)
+add_subdirectory(007-index-buffers)
+add_subdirectory(008-error-handling)
+add_subdirectory(009-modern-error-handling)
+add_subdirectory(010-uniforms)
+add_subdirectory(011-vertex-arrays)
+add_subdirectory(012-abstracting-buffers)
+add_subdirectory(013-abstracting-layout)
+add_subdirectory(014-abstracting-shader)
+add_subdirectory(015-abstracting-renderer)
+add_subdirectory(016-textures)
+add_subdirectory(017-maths)
+add_subdirectory(018-projection)
+
+# add_subdirectory(core-io)
+# add_dependencies(core-io core-common)
