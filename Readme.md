@@ -9,3 +9,8 @@ TODO:
 Array buffer: data from CPU to GPU (used to store vertices)
 Uniform: data from CPU to shader code
 Shaders: vertex and fragment (90% of use cases)
+Material: ?
+Framebuffer
+Lighting
+Shadow mapping
+Post processing/effects
