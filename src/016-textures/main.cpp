@@ -65,22 +65,12 @@ int main(int argc, char const *argv[])
     texture.bind();
     shader.setUniform1i("u_texture", 0); // should match the bound texture slot
 
-    float r{ 0.0f }; // red channel
-    float increment{ 0.05f };
-
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
         renderer.clear();
         renderer.draw(va, ib, shader);
-
-        if (r >= 1.0f)
-            increment = -0.05f;
-        else if (r <= 0.0f)
-            increment = 0.05f;
-        
-        r += increment;
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

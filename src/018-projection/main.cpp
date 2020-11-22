@@ -3,7 +3,6 @@
 #include <GL/glew.h> // has to be included before GLFW. TODO PUYA: Abstract away both
 #include <GLFW/glfw3.h>
 
-// A projection matrix tells our Window how to map the vertices, i.e. how to project 3D geometry onto the 2D display
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -42,12 +41,6 @@ int main(int argc, char const *argv[])
     Renderer renderer; // Does the GLEW initialization
 
     // Adding texture coordinates for each vertex (texture coordinates are normalized between 0,0 and 1,1)
-    // constexpr std::array positions{
-    //     -0.5f, -0.5f, 0.0f, 0.0f, // 0
-    //      0.5f, -0.5f, 1.0f, 0.0f, // 1
-    //      0.5f,  0.5f, 1.0f, 1.0f, // 2
-    //     -0.5f,  0.5f, 0.0f, 1.0f  // 3
-    // };
     constexpr std::array positions{
         230.0f, 50.0f,  0.0f, 0.0f, // 0
         730.0f, 50.0f,  1.0f, 0.0f, // 1
@@ -68,6 +61,7 @@ int main(int argc, char const *argv[])
     IndexBuffer ib(indices.data(), indices.size());
 
     // orthographic (2D) vs perspective (3D, i.e. size depends on z) projection
+    // A projection matrix tells our Window how to map the vertices, i.e. how to project 3D geometry onto the 2D display
     glm::mat4 projection = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
 
     // You need to run the binary from lesson directory '018-projection' for these relative paths to work
@@ -79,22 +73,12 @@ int main(int argc, char const *argv[])
     shader.setUniform1i("u_texture", 0); // should match the bound texture slot
     shader.setUniformMat4f("u_projection", projection);
 
-    float r{ 0.0f }; // red channel
-    float increment{ 0.05f };
-
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
         renderer.clear();
         renderer.draw(va, ib, shader);
-
-        if (r >= 1.0f)
-            increment = -0.05f;
-        else if (r <= 0.0f)
-            increment = 0.05f;
-        
-        r += increment;
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
